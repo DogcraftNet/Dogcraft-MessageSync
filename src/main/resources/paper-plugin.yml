@@ -1,0 +1,4 @@
+name: Dogcraft-MessageSync
+version: '${version}'
+main: net.dogcraft.dogcraftmessagesync.Dogcraft_MessageSync
+api-version: '1.20'
