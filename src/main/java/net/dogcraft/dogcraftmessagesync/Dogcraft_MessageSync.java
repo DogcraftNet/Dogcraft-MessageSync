@@ -3,6 +3,7 @@ package net.dogcraft.dogcraftmessagesync;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.kyori.adventure.text.serializer.json.JSONComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -36,7 +37,7 @@ public final class Dogcraft_MessageSync extends JavaPlugin implements Listener {
 
     @EventHandler
     public void playerDeath(PlayerDeathEvent event) {
-        String message = PlainTextComponentSerializer.plainText().serialize(Objects.requireNonNull(event.deathMessage()));
+        String message = JSONComponentSerializer.json().serialize(Objects.requireNonNull(event.deathMessage()));
 
         pluginMessage.sendPluginMessage(event.getPlayer(), message);
     }
@@ -47,7 +48,7 @@ public final class Dogcraft_MessageSync extends JavaPlugin implements Listener {
             return;
         }
 
-        String message = PlainTextComponentSerializer.plainText().serialize(Objects.requireNonNull(event.message()));
+        String message = JSONComponentSerializer.json().serialize(Objects.requireNonNull(event.message()));
 
         pluginMessage.sendPluginMessage(event.getPlayer(), message);
     }

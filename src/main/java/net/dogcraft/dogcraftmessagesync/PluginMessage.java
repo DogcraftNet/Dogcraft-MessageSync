@@ -9,6 +9,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.json.JSONComponentSerializer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 import org.jetbrains.annotations.NotNull;
@@ -54,8 +55,7 @@ public class PluginMessage implements PluginMessageListener {
     }
 
     if (!message.isEmpty()) {
-      plugin.getServer().broadcast(Component.text(message));
-      plugin.log(message);
+      plugin.getServer().broadcast(JSONComponentSerializer.json().deserialize(message));
     }
   }
 
